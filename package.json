@@ -1,0 +1,11 @@
+{
+  "name": "dylan-system-of-works-prototype",
+  "version": "0.17.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 4173 --directory dist",
+    "check": "node --check dist/app.js && node --check dist/world.js && node --check dist/ink.js && node --check dist/sound.js && node --check dist/harmony.js && node --check dist/audio-source.js && node --check dist/effects.js && node --check dist/melody.js",
+    "test": "node --test tests/*.test.js"
+  }
+}

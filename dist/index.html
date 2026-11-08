@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff">
+<title>Dylan van Dael — a field of connections</title><meta name="description" content="A field of projects and connections, unfolding as you explore.">
+<link rel="stylesheet" href="./fonts.css"><link rel="stylesheet" href="./style.css">
+</head>
+<body class="panel-hidden">
+<header class="topbar"><div class="drawing-symbol" aria-hidden="true">⊕</div><div class="identity"><b>DYLAN VAN DAEL</b><span>a field of connections</span></div><div class="revision">EXPERIMENTAL DRAWING<br>REV. 17 &nbsp; / &nbsp; a work in progress</div><div class="header-actions"><div class="sound-cluster"><button id="sound-toggle" aria-label="Enable sound" aria-pressed="false"><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="sound-copy">sound off</span></button><button id="sound-settings" aria-label="Sound settings" aria-expanded="false" aria-controls="sound-panel" title="sound settings"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 2v14M9 2v14M15 2v14"/><path d="M1 6h4M7 12h4M13 5h4"/></svg></button></div><button id="new-map" title="Generate a new map">↻ <span>new field</span></button><button id="help">[ ? ]</button><button id="panel-toggle" aria-expanded="false">tune <span>+</span></button></div></header>
+<main>
+<section id="viewport" aria-label="Infinite project map"><canvas id="map" tabindex="0" aria-label="Generative project diagram. Drag or scroll to pan. Use arrow keys or WASD to move. Scale is fixed. Tab to project markers and press Enter to open. Hover a marker for its title."></canvas><div id="project-targets" aria-label="Projects in view"></div>
+<div class="map-titleblock"><div class="titleblock-label">this little world</div><div class="reference-row"><b>DVD—<span id="seed-display">000000</span></b><button id="copy-link" title="Copy a reproducible link to this exact map position">keep this place ↗</button></div><div class="titleblock-grid"><span>SECTOR <b id="sector-display">+00 / +00</b></span><span>ARCHIVE <b>07 WORKS</b></span><span>FIELD <b>CONTINUOUS</b></span></div></div>
+<div class="pan-help">drag to wander &nbsp; · &nbsp; hover to discover</div>
+</section>
+<aside id="control-panel" aria-label="Map control panel">
+<div class="panel-title"><span>shape the field</span><button id="close-panel" aria-label="Close controls">×</button></div>
+<section class="register"><div class="section-title"><h2>projects</h2><span id="found-count">00 / 07</span></div><div id="project-register"></div></section>
+<div class="control-scroll"><section class="channels"><div class="section-title"><h2>connections</h2><span>show / hide</span></div><label><input type="checkbox" data-channel="music" checked><i class="swatch music"></i><span>SOUND</span><small>S—01</small></label><label><input type="checkbox" data-channel="digital" checked><i class="swatch digital"></i><span>IMAGE</span><small>I—02</small></label><label><input type="checkbox" data-channel="physical" checked><i class="swatch physical"></i><span>OBJECT</span><small>O—03</small></label></section>
+<section class="plot-controls"><div class="section-title"><h2>the way it feels</h2><button id="reset" title="Restore default drawing settings">reset ↶</button></div>
+<label class="parameter">paths<select id="routing"><option value="orthogonal">corners</option><option value="diagonal">angles</option><option value="curve">curves</option></select></label>
+<label class="parameter range">space between<output id="spread-value">1.00</output><input id="spread" aria-label="Junction spread" type="range" min="0.6" max="1.5" step="0.05" value="1"></label>
+<label class="parameter range">thread weight<output id="weight-value">1.20</output><input id="weight" aria-label="Line weight" type="range" min="0.5" max="3" step="0.1" value="1.2"></label>
+<label class="parameter range">label size<output id="type-size-value">1.00</output><input id="type-size" aria-label="Annotation size" type="range" min="0.7" max="1.6" step="0.05" value="1"></label>
+<label class="parameter range">drawing time<output id="arrival-value">2.60</output><input id="arrival" aria-label="Drawing time in seconds" type="range" min="1" max="5" step="0.2" value="2.6"></label>
+<label class="parameter range">ink variation<output id="gesture-value">1.00</output><input id="gesture" aria-label="Ink variation" type="range" min="0" max="2" step="0.1" value="1"></label>
+<label class="parameter">lettering<select id="font"><option value="mono">dm mono</option><option value="sans">dm sans</option><option value="serif">instrument serif</option></select></label>
+<div class="ink-colors"><label><input type="color" id="sound-color" value="#f51b3e">SOUND</label><label><input type="color" id="image-color" value="#234bff">IMAGE</label><label><input type="color" id="object-color" value="#00ad58">OBJECT</label><label><input type="color" id="yellow-color" value="#ffdc00">yellow</label><label><input type="color" id="black-color" value="#171918">ink</label></div>
+<div class="check-row"><label><input id="annotations" type="checkbox" checked> DETAILS</label><label><input id="flow" type="checkbox"> FLOW</label></div>
+</section>
+<section class="seed-controls"><label class="parameter">world seed<input id="seed-input" type="text" maxlength="32" spellcheck="false" aria-label="Generation seed"></label><div class="seed-buttons"><button id="load-seed">open seed →</button><button id="export">save image ↓</button></div><p>New visit → new field.<br>A saved seed returns to the same drawing.</p></section></div>
+<div class="panel-foot"><span class="status-lamp"></span><span>GENERATIVE STUDY / FINITE ARCHIVE</span></div>
+</aside>
+</main>
+<aside id="sound-panel" aria-label="Sound control panel" hidden>
+<div class="sound-panel-head"><span>sound of the field</span><span id="sound-meter" role="meter" aria-label="Sound output level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></span><button id="close-sound-panel" aria-label="Close sound settings">×</button></div>
+<div class="sound-panel-body">
+<div class="recording-row"><span><i></i><select id="source-select" aria-label="Recording to preview"></select><small id="source-duration">2.5 s</small></span><button id="audition-source" aria-pressed="false">listen source ▷</button></div>
+<div class="sound-tabs" role="tablist" aria-label="Sound sections"><button id="notes-tab" role="tab" aria-selected="true" aria-controls="sound-notes">notes</button><button id="effects-tab" role="tab" aria-selected="false" aria-controls="sound-effects" tabindex="-1">effects</button></div>
+<div id="sound-notes" role="tabpanel" aria-labelledby="notes-tab">
+<div class="harmony-caption"><span id="tuning-name">d dorian</span><span id="phrase-number">phrase 01 · evolving</span></div>
+<div id="chord-strip" aria-label="Chord progression"></div>
+<div class="melody-caption"><p id="scale-notes" class="scale-notes">d · e · f · g · a · b · c</p><span id="melody-note" aria-label="Current melody note">melody · —</span></div>
+<div class="tuning-row"><label>root<select id="sound-root" aria-label="Root note"></select></label><label>a4<input id="sound-reference" aria-label="Reference pitch in Hz" type="number" min="400" max="480" step="1" value="440"><span>hz</span></label></div>
+<label class="parameter range">chord pace<output id="pace-value">3.5 s</output><input id="sound-pace" aria-label="Seconds per chord" type="range" min="1.5" max="8" step="0.5" value="3.5"></label>
+<div class="sound-sliders">
+<label class="parameter range">note length<output id="tail-value">1.00×</output><input id="sound-tail" aria-label="Note length" type="range" min="0.25" max="2" step="0.05" value="1"></label>
+<label class="parameter range">glide<output id="glide-value">80 ms</output><input id="sound-glide" aria-label="Pitch glide" type="range" min="0" max="0.5" step="0.02" value="0.08"></label>
+<label class="parameter range">melody<output id="melody-value">60%</output><input id="sound-melody" aria-label="Melody volume" type="range" min="0" max="1" step="0.05" value="0.6"></label>
+<label class="parameter range">activity<output id="melodyDensity-value">65%</output><input id="sound-melodyDensity" aria-label="Melody activity" type="range" min="0" max="1" step="0.05" value="0.65"></label>
+<label class="parameter range">chord layer<output id="harmony-value">40%</output><input id="sound-harmony" aria-label="Chord layer volume" type="range" min="0" max="1" step="0.05" value="0.4"></label>
+
+</div>
+</div>
+<div id="sound-effects" role="tabpanel" aria-labelledby="effects-tab" hidden>
+<div class="effects-top"><span>shape the atmosphere</span><button id="effects-bypass" aria-label="Bypass audio effects" aria-pressed="false">compare dry</button></div>
+<div class="effects-presets" aria-label="Effect presets"><button data-effect-preset="close">close</button><button data-effect-preset="drift">drift</button><button data-effect-preset="echo">echo</button></div>
+<div class="sound-sliders effects-sliders">
+<label class="parameter range">reverb<output id="space-value">30%</output><input id="sound-space" aria-label="Reverb amount" type="range" min="0" max="1" step="0.05" value="0.3"></label>
+<label class="parameter range">decay<output id="reverbDecay-value">2.8 s</output><input id="sound-reverbDecay" aria-label="Reverb decay in seconds" type="range" min="0.6" max="6" step="0.2" value="2.8"></label>
+<label class="parameter range">delay<output id="delay-value">12%</output><input id="sound-delay" aria-label="Delay amount" type="range" min="0" max="1" step="0.01" value="0.12"></label>
+<label class="parameter range">time<output id="delayTime-value">360 ms</output><input id="sound-delayTime" aria-label="Delay time in milliseconds" type="range" min="80" max="900" step="20" value="360"></label>
+<label class="parameter range">feedback<output id="feedback-value">30%</output><input id="sound-feedback" aria-label="Delay feedback" type="range" min="0" max="0.68" step="0.02" value="0.3"></label>
+<label class="parameter range">chorus<output id="chorus-value">12%</output><input id="sound-chorus" aria-label="Chorus amount" type="range" min="0" max="1" step="0.01" value="0.12"></label>
+<label class="parameter range">movement<output id="chorusRate-value">0.35 hz</output><input id="sound-chorusRate" aria-label="Chorus speed in Hz" type="range" min="0.1" max="1.5" step="0.05" value="0.35"></label>
+<label class="parameter range">saturation<output id="drive-value">8%</output><input id="sound-drive" aria-label="Saturation amount" type="range" min="0" max="1" step="0.01" value="0.08"></label>
+<label class="parameter range">tone<output id="tone-value">60%</output><input id="sound-tone" aria-label="Tone brightness" type="range" min="0" max="1" step="0.05" value="0.6"></label>
+</div><p class="effects-note">echoes drift left and right · chorus adds width</p></div>
+<div class="sound-transport"><label class="parameter range">volume<output id="volume-value">45%</output><input id="volume" aria-label="Sound volume" type="range" min="0" max="1" step="0.05" value="0.45"></label>
+<div class="sound-audition-row"><button id="audition-progression">hear composition <span>▷</span></button><button id="sound-reset" title="Restore D Dorian sound settings">reset ↶</button></div>
+<div class="sound-bottom-row"><button id="replay-drawing">replay the drawing ↻</button><button id="panel-mute">sound off</button></div>
+<p id="sound-status" role="status">sound is off · tap hear composition to listen</p>
+</div></div></aside>
+<footer><div><span class="status-lamp"></span> <span id="status">a little further, always</span></div><div class="coordinate-readout">X <b id="coord-x">0000</b><span>Y <b id="coord-y">0000</b></span></div><div><span id="sector-count">01</span> SECTORS VISITED</div><button id="clear-selection">close project [esc]</button></footer>
+<dialog id="help-dialog"><button class="close-dialog" aria-label="Close instructions">×</button><p class="dialog-code">DVD / FIELD GUIDE / REV.17</p><h2>a few ways in</h2><p>This is an open-ended field of Dylan van Dael’s work. Each visit begins with a new seed; the drawing continues as you move through it.</p><dl><dt>DRAG / WASD / ARROWS</dt><dd>Move across the field.</dd><dt>SCROLL / TWO-FINGER DRAG</dt><dd>Pan at a fixed drawing scale. There is no zoom.</dd><dt>hover a project marker</dt><dd>Reveal its name. Click or tap to open it.</dd><dt>tab / enter</dt><dd>Focus project markers and open their projects.</dd><dt>sound on</dt><dd>Hear the drawing unfold. Hover a shape to hear its voice. Open the sliders beside sound to shape its Dorian chord progression and volume. New chord routes emerge with each phrase; melodies follow them and return home. The effects tab adds reverb, stereo delay, chorus and saturation, with a dry comparison.</dd><dt>new field</dt><dd>Generate another arrangement.</dd><dt>COPY LINK</dt><dd>Save the seed, location, and plot settings.</dd></dl><p>There are seven documented works and project fragments. They recur across the generated field; new sectors do not represent additional projects. Colored paths represent shared sound, image, or object relationships. Yellow paths connect visual worlds; black paths extend the field. Each connection is drawn in a single continuous stroke as you explore.</p><p>The independent prototype uses credited images from Dutch Design Week. Each project includes its source. Sound is made from four supplied audio recordings, sliced and transposed to follow the drawing and its Dorian chord progression; it is not presented as a recording of these projects. No fabricated artworks or live performance data.</p><button id="help-close" class="wide-button">RETURN TO DRAWING →</button></dialog>
+<section id="project-reveal" class="project-reveal" aria-label="Project in the field" hidden></section><div id="entry" class="entry" aria-hidden="true"><span class="entry-point"></span><p>dylan van dael</p><small>follow a connection</small></div><button id="skip-entry" class="skip-entry">enter now ↗</button><div id="node-hint" role="tooltip" aria-hidden="true"></div><div id="toast" role="status"></div><script type="module" src="./app.js"></script>
+</body></html>

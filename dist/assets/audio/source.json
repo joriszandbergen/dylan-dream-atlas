@@ -1,0 +1,46 @@
+[
+  {
+    "id": "audio-2",
+    "name": "audio 2",
+    "role": "chords",
+    "duration": 2.5,
+    "rootHz": 350.5016,
+    "sample": "./assets/audio/audio-2.wav",
+    "sustain": "./assets/audio/audio-2-sustain.wav",
+    "sampleOffset": 0.015,
+    "loopSeconds": 0.39657596371882087
+  },
+  {
+    "id": "audio-4",
+    "name": "audio 4",
+    "role": "bass",
+    "duration": 0.59762,
+    "rootHz": 58.4766,
+    "sample": "./assets/audio/audio-4.wav",
+    "sustain": "./assets/audio/audio-4-sustain.wav",
+    "sampleOffset": 0.008,
+    "loopSeconds": 0.32492063492063494
+  },
+  {
+    "id": "audio-9",
+    "name": "audio 9",
+    "role": "melody",
+    "duration": 1.12501,
+    "rootHz": 197.5645,
+    "sample": "./assets/audio/audio-9.wav",
+    "sustain": "./assets/audio/audio-9-sustain.wav",
+    "sampleOffset": 0.015,
+    "loopSeconds": 0.3745578231292517
+  },
+  {
+    "id": "audio-19",
+    "name": "audio 19",
+    "role": "accents",
+    "duration": 1.0,
+    "rootHz": 392.5314,
+    "sample": "./assets/audio/audio-19.wav",
+    "sustain": "./assets/audio/audio-19-sustain.wav",
+    "sampleOffset": 0.015,
+    "loopSeconds": 0.333718820861678
+  }
+]
